@@ -18,6 +18,10 @@ Route::get('/', function () {
 Route::resource('teams', 'TeamController');
 Route::resource('fixtures', 'FixtureController');
 Route::resource('tickets', 'TicketController');
+
+// ajax routes
+Route::post('fetch-fixture-info/{id}', 'FixtureController@fetchInfo')->name('fetch-fixture-info');
+// ajax
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

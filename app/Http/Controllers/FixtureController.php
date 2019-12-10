@@ -39,8 +39,13 @@ class FixtureController extends Controller
         //
     }
 
-    public function destroy($id)
+    public function fetchInfo($id)
     {
-        //
+        $fixture = Fixture::with(['home_team', 'away_team'])->whereId($id)->first();
+        return response()->json([
+            'success' => true,
+            'message' => 'fetched fixture information',
+            'data' => $fixture,
+        ], 200);
     }
 }

@@ -28,7 +28,7 @@
                         </td>
                         <td>
                             <span class="button-wrapper">
-                                <button class="btn btn-sm btn-success fixture-btn">Book Fixture</button>
+                                <button class="btn btn-sm btn-success fixture-btn" data-fixture="{{ $fixture->id }}">Book Fixture</button>
                             </span>
                         </td>
                     </tr>
@@ -43,7 +43,21 @@
 <script>
     $(function(){
         $('.fixture-btn').click(function(e){
-            $('#fixtureModal').modal()
+            // get match info
+            let fixture_id = $(this).data('fixture');
+            let url = `/fetch-fixture-info/${fixture_id}`;
+            $.post(url,{
+                _token: '{{ csrf_token() }}'
+            }, function(data){
+                console.log(data)
+            })
+            let modal = $('#fixtureModal');
+            let modal_info = {
+                title: '',
+                body: '',
+            }
+
+            modal.modal()
         });
     });
 </script>
