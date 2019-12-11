@@ -87,7 +87,7 @@
                 <div class="links">
                     <a href="/fixtures">Fixtures</a>
                     <a href="/teams">Teams</a>
-                    <a href="https://laravel-news.com">Tickets</a>
+                    <a href="/tickets">Tickets</a>
                 </div>
             </div>
         </div>

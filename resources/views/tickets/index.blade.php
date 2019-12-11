@@ -2,34 +2,28 @@
 
 @section('content')
     <div class="container">
-        <h2 class="page-title">Fixtures</h2>
+        <h2 class="page-title">Tickets ({{ $tickets->count() }})</h2>
         {{-- list fixtures --}}
         <table class="table table-bordered table-striped">
             <thead>
-                <th>Home</th>
-                <th>Away</th>
+                <th>Match Info</th>
+                <th>Date &amp; Time</th>
                 <th>Action</th>
-                {{-- <th></th> --}}
             </thead>
             <tbody>
-                @foreach ($fixtures as $fixture)
+                @foreach ($tickets as $ticket)
                     <tr>
                         <td> 
                             <span class="fixture-item">
                                 <img src="{{ asset('images/badge.png') }}" alt="badge" width="30">
-                                <b>{{ $fixture->home_team->name ?? '-' }}</b>
+                                <b> {{ $ticket->fixture->home_team->name }}</b>  vs <b>{{ $ticket->fixture->away_team->name }}</b>
                             </span>
                         </td>
+
+                        <td><b>{{ $ticket->fixture->fixture_date }}</b> @ <b>{{  $ticket->fixture->fixture_time }}</b></td>
+
                         <td>
-                            <span class="fixture-item">
-                                    <img src="{{ asset('images/badge2.png') }}" alt="badge" width="30">
-                                <b>{{ $fixture->away_team->name ?? '-' }}</b>
-                            </span>            
-                        </td>
-                        <td>
-                            <span class="button-wrapper">
-                                <button class="btn btn-sm btn-success fixture-btn" data-fixture="{{ $fixture->id }}">Book Fixture</button>
-                            </span>
+                            <button id="view_ticket" class="btn btn-sm btn-success">View Ticket</button>
                         </td>
                     </tr>
                 @endforeach
@@ -80,18 +74,17 @@
                 let modal_info = {
                     fullname: `${data.user.name}`,
                     title: `<b>${data.fixture.home_team.name}</b> vs <b>${data.fixture.away_team.name}</b>`,
-                    date: `<b>${data.fixture.fixture_date}</b>`,
-                    time: `<b>${data.fixture.fixture_time}</b>`,
+                    date: `${data.fixture.fixture_date}`,
+                    time: `${data.fixture.fixture_time}`,
                     body: ``
                 }
-                console.log(modal_info);
                 let modal = $('#TicketModal');
                 modal.find('.fullname').html(modal_info.fullname);
                 modal.find('.teams').html(modal_info.title);
                 modal.find('#TicketModalLabel').html('Ticket Details');
-                modal.find('.ticket_date').html(modal_info.date);
-                modal.find('.ticket_time').html(modal_info.time);
-                modal.modal('show')
+                modal.find('.ticket_date').val(modal_info.date);
+                modal.find('.ticket_time').val(modal_info.time);
+                modal.modal('show');
 
             });
         });

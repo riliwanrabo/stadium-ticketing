@@ -77,7 +77,7 @@
                 modal.find('#TicketModalLabel').html('Ticket Details');
                 modal.find('.ticket_date').val(modal_info.date);
                 modal.find('.ticket_time').val(modal_info.time);
-                modal.modal('show')
+                modal.modal('show');
 
             });
         });
