@@ -23,7 +23,7 @@
                         <td><b>{{ $ticket->fixture->fixture_date }}</b> @ <b>{{  $ticket->fixture->fixture_time }}</b></td>
 
                         <td>
-                            <button id="view_ticket" class="btn btn-sm btn-success">View Ticket</button>
+                        <button id="view_ticket" data-ticket_id="{{ $ticket->id }}" class="btn btn-sm btn-success">View Ticket</button>
                         </td>
                     </tr>
                 @endforeach
@@ -58,18 +58,16 @@
         });
 
         // process payment/booking
-        $('#pay_button').click(function(e){
+
+        $('body').on('click', '#view_ticket', function(e){
             e.preventDefault();
-            let url = '{{ route('tickets.store') }}';
-            let fixture_id = $(this).parents('.modal-footer').find('#fixture_id').val();
-            $.post(url, {
-                _token: '{{ csrf_token() }}',
-                'fixture_id': fixture_id
-            }, function(result){
+            debugger;
+            var ticket_id = $(this).data('ticket_id');
+            $.get('/tickets/'+ticket_id, function(result){
                 console.log(result);
-                alert(result.message);
+                // alert(result.message);
                 // close latter modal
-                $('#fixtureModal').modal('hide');
+                // $('#fixtureModal').modal('hide');
                 let data = result.data;
                 let modal_info = {
                     fullname: `${data.user.name}`,
@@ -82,8 +80,8 @@
                 modal.find('.fullname').html(modal_info.fullname);
                 modal.find('.teams').html(modal_info.title);
                 modal.find('#TicketModalLabel').html('Ticket Details');
-                modal.find('.ticket_date').val(modal_info.date);
-                modal.find('.ticket_time').val(modal_info.time);
+                modal.find('.ticket_date').html(modal_info.date);
+                modal.find('.ticket_time').html(modal_info.time);
                 modal.modal('show');
 
             });

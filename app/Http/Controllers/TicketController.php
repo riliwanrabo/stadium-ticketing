@@ -20,6 +20,19 @@ class TicketController extends Controller
         return view('tickets.index',compact('tickets'));
     }
 
+    public function show($id)
+    {
+        $ticket = Ticket::find($id);
+        return response([
+            'success' => true,
+            'message' => 'Ticket was booked successfully',
+            
+            'data' => $ticket->with(['user','fixture.home_team', 'fixture.away_team'])->first(),
+            
+            
+        ], 200);
+    }
+
     public function store(Request $request)
     {
         //  store ticket information
