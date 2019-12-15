@@ -22,6 +22,11 @@ Route::resource('tickets', 'TicketController');
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay'); 
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
+Route::get('/populate-fixtures', function(){
+    \Artisan::call('db:seed');
+    return redirect('/fixtures');
+});
+
 // ajax routes
 Route::post('fetch-fixture-info/{id}', 'FixtureController@fetchInfo')->name('fetch-fixture-info');
 // ajax

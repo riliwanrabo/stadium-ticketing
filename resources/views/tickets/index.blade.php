@@ -11,7 +11,7 @@
                 <th>Action</th>
             </thead>
             <tbody>
-                @foreach ($tickets as $ticket)
+                @forelse ($tickets as $ticket)
                     <tr>
                         <td> 
                             <span class="fixture-item">
@@ -26,7 +26,11 @@
                         <button id="view_ticket" data-ticket_id="{{ $ticket->id }}" class="btn btn-sm btn-success">View Ticket</button>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td class="text-center" colspan="3">- Not Data - <a href="/fixtures">See Fixtures</a></td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

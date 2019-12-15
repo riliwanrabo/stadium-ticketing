@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <h2 class="page-title">Fixtures</h2>
+        <p><a href="/tickets">view tickets</a></p>
         {{-- list fixtures --}}
         <table class="table table-bordered table-striped">
             <thead>
@@ -12,7 +13,7 @@
                 {{-- <th></th> --}}
             </thead>
             <tbody>
-                @foreach ($fixtures as $fixture)
+                @forelse ($fixtures as $fixture)
                     <tr>
                         <td> 
                             <span class="fixture-item">
@@ -32,7 +33,13 @@
                             </span>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            - No Data - <a href="/populate-fixtures">Auto-Populate fixtures</a>
+                        </td>
+                    </tr>    
+                @endforelse
             </tbody>
         </table>
     </div>
