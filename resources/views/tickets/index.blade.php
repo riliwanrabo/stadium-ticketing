@@ -32,8 +32,9 @@
     </div>
 @endsection
 
-@include('fixtures.modals')
+@include('tickets.modals')
 @push('scripts')
+
 <script>
     $(function(){
         $('.fixture-btn').click(function(e){
@@ -61,7 +62,7 @@
 
         $('body').on('click', '#view_ticket', function(e){
             e.preventDefault();
-            debugger;
+            // debugger;
             var ticket_id = $(this).data('ticket_id');
             $.get('/tickets/'+ticket_id, function(result){
                 console.log(result);
@@ -86,6 +87,16 @@
 
             });
         });
+
+
+        
     });
+
+    $("#print_ticket").click(function(e){
+        e.preventDefault();
+            // alert('this has been clicked')
+            $(".print-area").printThis();
+
+        });
 </script>
 @endpush

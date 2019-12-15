@@ -2,6 +2,7 @@
 <div class="modal fade" id="TicketModal" tabindex="-1" role="dialog" aria-labelledby="TicketModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+           <div class="print-area">
             <div class="modal-header">
                 <h5 class="modal-title bold text-info" id="TicketModalLabel">---</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -19,8 +20,10 @@
                 
                 
             </div>
+           </div>
             <div class="modal-footer">
                 <input type="hidden" id="fixture_id" value="">
+                <button type="button" class="btn btn-success" id="print_ticket">Print</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
             </div>
