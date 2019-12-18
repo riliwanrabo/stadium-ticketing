@@ -27,7 +27,7 @@ class TicketController extends Controller
             'success' => true,
             'message' => 'Ticket was booked successfully',
             
-            'data' => $ticket->with(['user','fixture.home_team', 'fixture.away_team'])->first(),
+            'data' => $ticket->with(['user','fixture.home_team', 'fixture.away_team'])->where('user_id', auth()->user()->id)->first(),
             
             
         ], 200);
@@ -46,7 +46,7 @@ class TicketController extends Controller
                 'success' => true,
                 'message' => 'Ticket was booked successfully',
                 
-                'data' => $ticket->with(['user','fixture.home_team', 'fixture.away_team'])->first(),
+                'data' => $ticket->with(['user','fixture.home_team', 'fixture.away_team'])->where('user_id', auth()->user()->id)->first(),
                 
                 
             ], 200);

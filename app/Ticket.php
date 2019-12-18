@@ -10,7 +10,7 @@ class Ticket extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::Class, 'user_id', 'id');
+        return $this->belongsTo(User::Class, 'user_id');
     }
 
     public function fixture()

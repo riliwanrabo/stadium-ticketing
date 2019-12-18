@@ -85,7 +85,7 @@
                 $('#fixtureModal').modal('hide');
                 let data = result.data;
                 let modal_info = {
-                    fullname: `${data.user.name}`,
+                    fullname: `${data.user.first_name} ${data.user.last_name}`,
                     title: `<b>${data.fixture.home_team.name}</b> vs <b>${data.fixture.away_team.name}</b>`,
                     date: `<b>${data.fixture.fixture_date}</b>`,
                     time: `<b>${data.fixture.fixture_time}</b>`,
